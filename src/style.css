@@ -1,0 +1,24 @@
+@import "./modules/auth/auth.css";
+@import "./modules/chat/chat.css";
+@import "./modules/chatList/chatList.css";
+@import "./modules/chatList/components/listItem/listItem.css";
+@import "./layout/errorPage/errorPage.css";
+@import "./layout/main/main.css";
+@import "./layout/profile/profile.css";
+@import "./components/button/button.css";
+@import "./components/sideBtn/sideBtn.css";
+@import "./components/profileItem/profileItem.css";
+
+body {
+  background-color: #F8F7F6;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}

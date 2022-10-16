@@ -1,0 +1,22 @@
+.profile-form__control {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+  padding: 10px 0;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #EAEAEA;
+  }
+
+  & label {
+    color: #303030;
+  }
+
+  & input {
+    border: none;
+    text-align: end;
+    background-color: transparent;
+    color: #999999;
+  }
+}

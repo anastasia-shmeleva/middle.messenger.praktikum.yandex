@@ -1,0 +1,22 @@
+.side-button {
+  width: 5%;
+  min-width: 64px;
+  background-color: #FBFBFB;
+  display: flex;
+  &:hover {
+    cursor: pointer;
+    background-color: #DCE5D1;
+  }
+}
+
+.arrow {
+  width: 28px;
+  height: 28px;
+  margin: auto;
+  
+  border-radius: 50%;
+  background-color: #464F3B;
+  background-image: url(../static/arrow.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -1,7 +1,9 @@
+@import "../../vars.css";
+
 .error-wrapper {
   height: 160px;
   width: 100vw;
-  background-color: #F8F7F6;
+  background-color: var(--color-background);
   text-align: center;
 
   position: absolute;
@@ -13,14 +15,14 @@
 .error-name {
   font-weight: 500;
   font-size: 40px;
-  color: #1E1E1E;
+  color: var(--dark-font);
   margin-bottom: 23px;
 }
 
 .error-description {
   font-weight: 500;
   font-size: 20px;
-  color: #1E1E1E;
+  color: var(--dark-font);
   margin-bottom: 66px;
 }
 
@@ -28,5 +30,5 @@
   font-weight: 500;
   font-size: 11px;
   text-decoration: underline;
-  color: #464F3B;
+  color: var(--color-main);
 }

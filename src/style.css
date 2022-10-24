@@ -8,9 +8,10 @@
 @import "./components/button/button.css";
 @import "./components/sideBtn/sideBtn.css";
 @import "./components/profileItem/profileItem.css";
+@import "./vars.css";
 
 body {
-  background-color: #F8F7F6;
+  background-color: var(--color-background);
   font-family: 'Inter', 'Roboto', sans-serif;
   margin: 0;
 }

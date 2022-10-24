@@ -1,2 +1,2 @@
-import "./components/login";
-// import "./components/register";
+// import "./components/login";
+import "./components/register";

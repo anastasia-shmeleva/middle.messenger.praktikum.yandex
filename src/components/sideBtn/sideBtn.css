@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .side-button {
   width: 5%;
   min-width: 64px;
@@ -5,7 +7,7 @@
   display: flex;
   &:hover {
     cursor: pointer;
-    background-color: #DCE5D1;
+    background-color: var(--color-hover);
   }
 }
 
@@ -15,7 +17,7 @@
   margin: auto;
   
   border-radius: 50%;
-  background-color: #464F3B;
+  background-color: var(--color-main);
   background-image: url(../static/arrow.svg);
   background-position: center;
   background-repeat: no-repeat;

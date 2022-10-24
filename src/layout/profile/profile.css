@@ -1,3 +1,5 @@
+@import "../../vars.css";
+
 .profile-container {
     min-height: 100vh;
     display: flex;
@@ -31,7 +33,7 @@
 .profile-title {
   font-weight: 600;
   font-size: 16px;
-  color: #303030;
+  color: var(--main-font);
   padding-top: 21px;
 }
 
@@ -55,7 +57,7 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-    color: #464F3B;
+    color: var(--color-main);
 
     &:hover {
       text-decoration: underline;
@@ -63,6 +65,6 @@
   }
 
   &.logout a {
-    color: #FF2F2F;
+    color: var(--danger-color);
   }
 }

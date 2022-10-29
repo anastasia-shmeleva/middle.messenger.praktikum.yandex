@@ -1,0 +1,16 @@
+@import url("../../vars.css");
+
+.chat-main {
+  width: 70vw;
+  height: 100vh;
+  line-height: 100vh;
+  background-color: var(--white);
+
+  &.empty {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--shade-color);
+    font-size: 12px;
+  }
+}

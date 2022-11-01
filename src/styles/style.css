@@ -1,0 +1,30 @@
+@import url("./vars.css");
+@import url("../pages/login/login.css");
+@import url("../pages/register/register.css");
+@import url("../components/form/form.css");
+@import url("../components/formField/formField.css");
+@import url("../components/button/button.css");
+@import url("../pages/error/error.css");
+@import url("../pages/profile/profile.css");
+@import url("../components/sideBtn/sideBtn.css");
+@import url("../components/profileField/profileField.css");
+@import url("../components/avatar/avatar.css");
+@import url("../components/profileAction/profileAction.css");
+@import url("../pages/chats/chats.css");
+@import url("../components/chat/chat.css");
+@import url("../components/chatListHeader/chatListHeader.css");
+@import url("../components/chatPreview/chatPreview.css");
+
+body {
+  background-color: var(--color-background);
+  font-family: Inter, Roboto, sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}

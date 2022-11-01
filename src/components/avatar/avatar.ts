@@ -1,16 +1,18 @@
 import Block from "../../utils/Block";
-import template from "./sideBtn.tmpl";
+import template from "./avatar.tmpl";
 
 interface Props {
-  name: void,
+  avatar?: string,
+  events: {
+    click: () => void;
+  },
 }
 
-export default class SideBtn extends Block<Props> {
+export default class Avatar extends Block<Props> {
   constructor(props: Props) {
     super("div", props);
-    this.element?.classList.add("side-button");
   }
-
+  
   render(): DocumentFragment {
     return this.compile(template, this.props);
   }

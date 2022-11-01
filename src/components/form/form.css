@@ -1,4 +1,4 @@
-@import url("../../vars.css");
+@import url("../../styles/vars.css");
 
 .form {
   width: 340px;
@@ -33,7 +33,7 @@
 .form-footer {
   display: inline-grid;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 .submit {

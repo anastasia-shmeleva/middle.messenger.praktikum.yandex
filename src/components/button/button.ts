@@ -2,7 +2,7 @@ import Block from "../../utils/Block";
 import template from "./button.tmpl";
 
 interface Props {
-  name: string;
+  name: string,
 }
 
 export default class Button extends Block<Props> {

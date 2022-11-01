@@ -1,27 +1,26 @@
 import Block from "../../utils/Block";
-import template from "./formField.tmpl";
-import { validate } from "../../utils/validate";
+import template from "./profileField.tmpl";
 
 interface Props {
+  edit?: boolean,
   label: string,
   type: string,
-  value: string,
   name: string,
+  value?: string,
   events?: {
     focusin: (e: Event) => void;
     focusout: (e: Event) => void;
   },
 }
 
-export default class FormField extends Block<Props> {
+export default class ProfileField extends Block<Props> {
   constructor(props: Props) {
     const events = {
       focusin: (e: Event): void => this.onFocus(e),
       focusout: (e: Event): void => this.onBlur(e),
     };
-
     super("div", { ...props, events });
-    this.element?.classList.add("form__control");
+    this.element?.classList.add("profile-form__control");
   }
 
   render(): DocumentFragment {
@@ -29,11 +28,10 @@ export default class FormField extends Block<Props> {
   }
 
   onFocus = (e: Event): void => {
-    validate(e, this.element!, ".form__error", "show")
+    console.log(e)
   };
 
   onBlur = (e: Event): void => {
-    validate(e, this.element!, ".form__error", "show")
+    console.log(e)
   };
-
 }

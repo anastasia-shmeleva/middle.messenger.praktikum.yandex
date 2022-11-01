@@ -1,15 +1,16 @@
 import Block from "../../utils/Block";
 import template from "./formField.tmpl";
+import { validate } from "../../utils/validate";
 
 interface Props {
-  label: string;
-  type: string;
-  value: string;
-  name: string;
+  label: string,
+  type: string,
+  value: string,
+  name: string,
   events?: {
     focusin: (e: Event) => void;
     focusout: (e: Event) => void;
-  };
+  },
 }
 
 export default class FormField extends Block<Props> {
@@ -28,11 +29,11 @@ export default class FormField extends Block<Props> {
   }
 
   onFocus = (e: Event): void => {
-    console.log(e)
+    validate(e, this.element!, ".form__error", "show")
   };
 
   onBlur = (e: Event): void => {
-    console.log(e)
+    validate(e, this.element!, ".form__error", "show")
   };
 
 }

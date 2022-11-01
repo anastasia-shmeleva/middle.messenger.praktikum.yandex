@@ -1,8 +1,12 @@
 export default `
   <span class="form-header">{{ name }}</span>
-  {{#each fields}}
-    {{{ this }}}
-  {{/each}}
+  {{{ emailField }}}
+  {{{ loginField }}}
+  {{{ firstNameField }}}
+  {{{ secondNameField }}}
+  {{{ phoneField }}}
+  {{{ passwordField }}}
+  {{{ confirmPasswordField }}}
   <div class="form-footer">
     {{{ button }}}
     <span class="forward">

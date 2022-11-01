@@ -1,4 +1,4 @@
-@import url("../../vars.css");
+@import url("../../styles/vars.css");
 
 .button {
   background: var(--color-main);
@@ -7,5 +7,5 @@
   cursor: pointer;
   font-size: 12px;
   border: none;
-  color: var(--white)
+  color: var(--white);
 }

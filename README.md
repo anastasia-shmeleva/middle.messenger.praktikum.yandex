@@ -14,7 +14,15 @@ Layouts of the future chat app with simple functionality like
 - adding/deleting users
 - sending messages, including video/photo/files and location
 
-## Start the project with following commands
+The app has a few pages listed below:
+- "/signin" - Login page
+- "/signup" - Register page
+- "/profile" - Profile page
+- "/chats" - Chats main page
+- "/error500"
+- "/error404"
+
+## Start the app with following commands
 
 - `npm install`
 - `npm run build`

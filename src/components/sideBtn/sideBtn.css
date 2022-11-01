@@ -1,4 +1,4 @@
-@import url("../../vars.css");
+@import url("../../styles/vars.css");
 
 .side-button {
   width: 5%;
@@ -18,7 +18,7 @@
   margin: auto;
   border-radius: 50%;
   background-color: var(--color-main);
-  background-image: "url(../static/arrow.svg)";
+  background-image: url("../../static/arrow.svg");
   background-position: center;
   background-repeat: no-repeat;
 }

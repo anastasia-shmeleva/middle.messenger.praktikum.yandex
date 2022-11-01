@@ -7,5 +7,4 @@ export default `
     placeholder=" "
   />
   <label for="{{ name }}">{{ label }}</label>
-  <p class='form__error'></p>
 `;

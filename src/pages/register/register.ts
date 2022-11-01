@@ -5,7 +5,7 @@ import FormField from "../../components/formField/formField";
 import Button from "../../components/button/button";
 
 interface Props {
-  form: Block,
+  form: Block;
 }
 
 class Register extends Block<Props> {
@@ -22,13 +22,15 @@ class Register extends Block<Props> {
 const RegisterPage = new Register({
   form: new Form({
     name: "Register",
-    emailField: new FormField({ label: "Email", type: "text", value: "", name: "email" }),
-    loginField: new FormField({ label: "Login", type: "text", value: "", name: "login" }),
-    firstNameField: new FormField({ label: "Name", type: "text", value: "", name: "first_name" }),
-    secondNameField: new FormField({ label: "Second name", type: "text", value: "", name: "second_name" }),
-    phoneField: new FormField({ label: "Phone", type: "text", value: "", name: "phone" }),
-    passwordField: new FormField({ label: "Password", type: "password", value: "", name: "password" }),
-    confirmPasswordField: new FormField({ label: "Confirm password", type: "password", value: "", name: "confirm_password" }),
+    fields: [
+      new FormField({ label: "Email", type: "text", value: "", name: "email" }),
+      new FormField({ label: "Login", type: "text", value: "", name: "login" }),
+      new FormField({ label: "Name", type: "text", value: "", name: "first_name" }),
+      new FormField({ label: "Second name", type: "text", value: "", name: "second_name" }),
+      new FormField({ label: "Phone", type: "text", value: "", name: "phone" }),
+      new FormField({ label: "Password", type: "password", value: "", name: "password" }),
+      new FormField({ label: "Confirm password", type: "password", value: "", name: "password" }),
+    ],
     button: new Button({ name: "Sign up" }),
     linkTitle: "Sign in",
     link: "/signin",

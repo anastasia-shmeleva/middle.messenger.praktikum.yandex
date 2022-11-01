@@ -1,0 +1,70 @@
+@import url("../../vars.css");
+
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.profile {
+  width: 95%;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 130px;
+  height: 130px;
+  background-color: #efefef;
+  border-radius: 50%;
+  background-image: "url(../static/avatar.svg)";
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-color: #000;
+    opacity: 0.5;
+  }
+}
+
+.profile-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--main-font);
+  padding-top: 21px;
+}
+
+.profile-body {
+  padding: 50px 0;
+}
+
+.profile-form {
+  width: 280px;
+}
+
+.profile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.profile__action {
+  & a {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: var(--color-main);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.logout a {
+    color: var(--danger-color);
+  }
+}

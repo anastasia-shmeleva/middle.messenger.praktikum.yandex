@@ -1,3 +1,5 @@
 export default `
-  <div class="arrow"></div>
+  <div class="side-button">
+    <div class="arrow"></div>
+  </div>
 `;

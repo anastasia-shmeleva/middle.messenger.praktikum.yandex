@@ -1,28 +1,21 @@
 import Block from "../../utils/Block";
-import { validateOnSubmit } from "../../utils/validate";
 import template from "./form.tmpl";
 
 interface Props {
-  name: string,
-  emailField?: Block,
-  loginField?: Block,
-  firstNameField?: Block,
-  secondNameField?: Block,
-  phoneField?: Block,
-  passwordField?: Block,
-  confirmPasswordField?: Block,
-  button: Block,
-  linkTitle: string,
-  link: string,
+  name: string;
+  fields: Block[];
+  button: Block;
+  linkTitle: string;
+  link: string;
   events?: {
-    submit: (e: Event) => void;
-  },
+    submit: (e: SubmitEvent) => void;
+  };
 }
 
 export default class Form extends Block<Props> {
   constructor(props: Props) {
     const events = {
-      submit: (e: Event) => validateOnSubmit(e)
+      submit: (e: Event) => console.log(e)
     };
     super("form", { ...props, events });
 

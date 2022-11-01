@@ -88,6 +88,9 @@ export default abstract class Block<
         props[key] = value;
       }
     });
+
+    console.log('children', children)
+    console.log('props', props)
     
     return { children, props };
   }
@@ -105,7 +108,7 @@ export default abstract class Block<
     
     const fragment = document.createElement("template");
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
-
+    console.log(this.children)
     Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 			if (stub) {

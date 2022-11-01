@@ -1,8 +1,6 @@
-@import url("../../styles/vars.css");
-
 .form__control {
   position: relative;
-  margin-top: 32px;
+  margin-top: 40px;
 
   & label {
     color: var(--shade-color);
@@ -31,21 +29,5 @@
     opacity: 1;
     font-size: 9px;
     transition: all 0.1s ease-out;
-  }
-}
-
-.form__error {
-  position: absolute;
-  left: 0;
-  top: 32px;
-  margin: 0;
-  color: var(--error-color);
-  font-weight: 400;
-  font-size: 8px;
-  line-height: 8px;
-  display: none;
-
-  &.show {
-    display: block;
   }
 }

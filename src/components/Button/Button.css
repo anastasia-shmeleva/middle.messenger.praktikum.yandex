@@ -1,0 +1,11 @@
+@import url("../../styles/vars.css");
+
+.button {
+  background: var(--color-main);
+  padding: 9px 28px;
+  font: inherit;
+  cursor: pointer;
+  font-size: 12px;
+  border: none;
+  color: var(--white);
+}

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> a9b60e7 (README added)
 ### Design link: 
 - https://www.figma.com/file/SuRH2E6anQGMk3R5vPlEcR/Practicum-chat
 
@@ -9,11 +14,19 @@
 ---
 
 ## Description
+=======
+### Design link: 
+- https://www.figma.com/file/SuRH2E6anQGMk3R5vPlEcR/Practicum-chat
+---
+
+## Описание
+>>>>>>> a53d1d9 (README added)
 
 Layouts of the future chat app with simple functionality like 
 - adding/deleting users
 - sending messages, including video/photo/files and location
 
+<<<<<<< HEAD
 The app has a few pages listed below:
 - "/signin" - Login page
 - "/signup" - Register page
@@ -23,7 +36,17 @@ The app has a few pages listed below:
 - "/error404"
 
 ## Start the app with following commands
+=======
+## Start the project with following commands
+>>>>>>> a53d1d9 (README added)
 
 - `npm install`
 - `npm run build`
 - `npm start`
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a53d1d9 (README added)
+>>>>>>> a9b60e7 (README added)

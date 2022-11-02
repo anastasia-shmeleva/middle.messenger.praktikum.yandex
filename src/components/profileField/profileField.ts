@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./profileField.tmpl";
+import template from "./ProfileField.tmpl";
 
 interface Props {
   edit?: boolean,

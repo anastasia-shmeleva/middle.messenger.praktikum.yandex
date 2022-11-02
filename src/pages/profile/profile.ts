@@ -1,10 +1,10 @@
 import template from "./profile.tmpl";
 import Block from "../../utils/Block";
-import SideBtn from "../../components/sideBtn/sideBtn";
-import ProfileField from "../../components/profileField/profileField";
-import Avatar from "../../components/avatar/avatar";
-import Button from "../../components/button/button";
-import Action from "../../components/profileAction/profileAction";
+import SideBtn from "../../components/SideBtn/SideBtn";
+import ProfileField from "../../components/ProfileField/ProfileField";
+import Avatar from "../../components/Avatar/Avatar";
+import Button from "../../components/Button/Button";
+import Action from "../../components/ProfileAction/ProfileAction";
 
 interface Props {
   edit: boolean,
@@ -15,9 +15,9 @@ interface Props {
   // User 
   email: Block,
   login: Block,
-  first_name: Block,
-  second_name: Block,
-  display_name: Block,
+  firstName: Block,
+  secondName: Block,
+  displayName: Block,
   phone: Block,
   avatar: Block,
   // Password 
@@ -49,9 +49,9 @@ const profile = new Profile({
   display: "Ivan",
   email: new ProfileField({ label: "Email", type: "email", value: "pochta@yandex.ru", name: "email", edit: false }),
   login: new ProfileField({ label: "Login", type: "text", value: "ivanivanov", name: "login", edit: false }),
-  first_name: new ProfileField({ label: "Name", type: "text", value: "Ivan", name: "firs_name", edit: false }),
-  second_name: new ProfileField({ label: "Second name", type: "text", value: "Ivanov", name: "second_name", edit: false }),
-  display_name: new ProfileField({ label: "Display name", type: "text", value: "Ivan", name: "display_name", edit: false }),
+  firstName: new ProfileField({ label: "Name", type: "text", value: "Ivan", name: "firs_name", edit: false }),
+  secondName: new ProfileField({ label: "Second name", type: "text", value: "Ivanov", name: "second_name", edit: false }),
+  displayName: new ProfileField({ label: "Display name", type: "text", value: "Ivan", name: "display_name", edit: false }),
   phone: new ProfileField({ label: "Phone", type: "phone", value: "+44 999 999 99 99", name: "phone", edit: false }),
   oldPassword: new ProfileField({ label: "Old password", type: "password", value: "password", name: "oldPassword", edit: true }),
   newPassword: new ProfileField({ label: "New Password", type: "password", value: "somepassword", name: "newPassword", edit: true }),

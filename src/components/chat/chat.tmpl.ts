@@ -3,7 +3,7 @@ export default `
     <span>{{ stub }}</span>
   {{else}}
     <div class="chats-main__header">
-      <img src="{{ avatar }}" class="chats-main__avatar" />
+      <img src="{{ avatar }}" alt="avatar" class="chats-main__avatar" />
       <span class='chats-main__name'>{{ currentChatName }}</span>
       <ul class="chats-main__actions-dots">
         <li class="dot"></li>

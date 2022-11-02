@@ -7,6 +7,9 @@ import Chats from "./pages/chats/chats"
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.querySelector('#app')!;
+  if (window.location.pathname === '/') {
+    window.location.replace('/signin');
+  }
   if (window.location.pathname === '/signin') {
     root.append(Login.getContent()!);
     Login.dispatchComponentDidMount();

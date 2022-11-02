@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./chatPreview.tmpl";
+import template from "./ChatPreview.tmpl";
 
 interface Props {
   avatar?: string,
@@ -12,7 +12,7 @@ interface Props {
   },
 }
 
-export default class chatPreview extends Block<Props> {
+export default class ChatPreview extends Block<Props> {
   constructor(props: Props) {
     super("div", props);
     this.element?.classList.add("chat-aside__body");

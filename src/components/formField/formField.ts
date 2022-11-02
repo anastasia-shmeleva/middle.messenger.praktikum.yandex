@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./formField.tmpl";
+import template from "./FormField.tmpl";
 import { validate } from "../../utils/validate";
 
 interface Props {

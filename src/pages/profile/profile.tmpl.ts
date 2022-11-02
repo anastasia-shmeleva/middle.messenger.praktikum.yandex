@@ -16,9 +16,9 @@ export default `
       {{else}}
         {{{ email }}}
         {{{ login }}}
-        {{{ first_name }}}
-        {{{ second_name }}}
-        {{{ display_name }}}
+        {{{ firstName }}}
+        {{{ secondName }}}
+        {{{ displayName }}}
         {{{ phone }}}
       {{/if}}
       </form>

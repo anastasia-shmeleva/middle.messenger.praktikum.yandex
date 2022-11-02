@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
 import { validateOnSubmit } from "../../utils/validate";
-import template from "./form.tmpl";
+import template from "./Form.tmpl";
 
 interface Props {
   name: string,

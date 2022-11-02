@@ -32,7 +32,11 @@ export default class HTTPTransport {
   } 
 
   get = (url: string, options: Options): Promise<XMLHttpRequest | Response> => {
-  return this.fetchWithRetry(url, { ...options, method: METHODS.GET });
+    let query = '';
+    if (options.data) {
+      query = queryStringify(options.data);
+    }
+    return this.fetchWithRetry(url + query, { ...options, method: METHODS.GET });
   };
 
   post = (url: string, options: Options): Promise<XMLHttpRequest | Response> => {
@@ -56,8 +60,9 @@ export default class HTTPTransport {
         return;
       }
       const xhr = new XMLHttpRequest();
-      const isGet = method === METHODS.GET;
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
+
+      xhr.open(method, url);
+      
       if (headers) {
         Object.keys(headers).forEach(key => {
           xhr.setRequestHeader(key, headers[key]);
@@ -74,7 +79,7 @@ export default class HTTPTransport {
       xhr.timeout = timeout; 
       xhr.ontimeout = reject;
         
-      if (isGet || !data) {
+      if (!data) {
         xhr.send();
       } else {
         xhr.send(data);

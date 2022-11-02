@@ -1,4 +1,4 @@
-import template from "./chat.tmpl";
+import template from "./Chat.tmpl";
 import Block from "../../utils/Block";
 
 interface Props {

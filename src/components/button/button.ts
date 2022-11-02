@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./button.tmpl";
+import template from "./Button.tmpl";
 
 interface Props {
   name: string,

@@ -1,8 +1,8 @@
 import template from "./chats.tmpl";
 import Block from "../../utils/Block";
-import Chat from "../../components/chat/chat";
-import ChatListHeader from "../../components/chatListHeader/chatListHeader";
-import ChatPreview from "../../components/chatPreview/chatPreview";
+import Chat from "../../components/Chat/Chat";
+import ChatListHeader from "../../components/ChatListHeader/ChatListHeader";
+import ChatPreview from "../../components/ChatPreview/ChatPreview";
 
 interface Props {
   chatListHeader: Block,

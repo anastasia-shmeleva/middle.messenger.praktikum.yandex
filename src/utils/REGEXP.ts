@@ -35,5 +35,5 @@ export const REGEXP: Record<string, REGEXP> = {
   message: {
     rule: /(.|\s)*\S(.|\s)*/,
     error: 'Should not be empty',
-},
+  },
 }

@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./sideBtn.tmpl";
+import template from "./SideBtn.tmpl";
 
 interface Props {
   name: void,

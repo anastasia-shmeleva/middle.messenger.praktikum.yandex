@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./profileAction.tmpl";
+import template from "./ProfileAction.tmpl";
 
 interface Props {
   class?: string,

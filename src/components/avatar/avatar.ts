@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import template from "./avatar.tmpl";
+import template from "./Avatar.tmpl";
 
 interface Props {
   avatar?: string,

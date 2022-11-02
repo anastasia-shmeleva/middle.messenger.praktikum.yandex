@@ -1,8 +1,8 @@
 import template from "./login.tmpl";
 import Block from "../../utils/Block";
-import Form from "../../components/form/form";
-import FormField from "../../components/formField/formField";
-import Button from "../../components/button/button";
+import Form from "../../components/Form/Form";
+import FormField from "../../components/FormField/FormField";
+import Button from "../../components/Button/Button";
 
 interface Props {
   form: Block,

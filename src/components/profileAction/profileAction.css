@@ -1,0 +1,19 @@
+@import url("../../styles/vars.css");
+
+.profile__action {
+  & a {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: var(--color-main);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.logout a {
+    color: var(--error-color);
+  }
+}

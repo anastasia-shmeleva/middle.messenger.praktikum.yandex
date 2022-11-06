@@ -6,15 +6,21 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/36568278-6f65-40db-947d-5e88c33b67a6/deploy-status)](https://app.netlify.com/sites/mellifluous-yeot-e81e18/deploys)
 
----
-
-## Description
+## Описание
 
 Layouts of the future chat app with simple functionality like 
 - adding/deleting users
 - sending messages, including video/photo/files and location
 
-## Start the project with following commands
+The app has a few pages listed below:
+- "/signin" - Login page
+- "/signup" - Register page
+- "/profile" - Profile page
+- "/chats" - Chats main page
+- "/error500"
+- "/error404"
+
+## Start the app with following commands
 
 - `npm install`
 - `npm run build`

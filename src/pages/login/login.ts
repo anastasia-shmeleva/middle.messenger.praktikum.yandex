@@ -1,11 +1,11 @@
 import template from "./login.tmpl";
 import Block from "../../utils/Block";
-import Form from "../../components/form/form";
-import FormField from "../../components/formField/formField";
-import Button from "../../components/button/button";
+import Form from "../../components/Form/Form";
+import FormField from "../../components/FormField/FormField";
+import Button from "../../components/Button/Button";
 
 interface Props {
-  form: Block;
+  form: Block,
 }
 
 class Login extends Block<Props> {
@@ -22,10 +22,8 @@ class Login extends Block<Props> {
 const LoginPage = new Login({
   form: new Form({
     name: "Sign in",
-    fields: [
-      new FormField({ label: "Login", type: "text", value: "", name: "login" }),
-      new FormField({ label: "Password", type: "password", value: "", name: "password" })
-    ],
+    loginField: new FormField({ label: "Login", type: "text", value: "", name: "login" }),
+    passwordField: new FormField({ label: "Password", type: "password", value: "", name: "password" }),
     button: new Button({ name: "Sign in" }),
     linkTitle: "Create account",
     link: "/signup",

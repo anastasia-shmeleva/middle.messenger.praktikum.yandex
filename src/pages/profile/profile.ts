@@ -1,6 +1,6 @@
 import template from "./profile.tmpl";
 import Block from "../../utils/Block";
-import { SideButton } from "../../components/SideBtn/SideBtn";
+import SideBtn from "../../components/SideBtn/SideBtn";
 import ProfileField from "../../components/ProfileField/ProfileField";
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
@@ -9,7 +9,7 @@ import Action from "../../components/ProfileAction/ProfileAction";
 interface Props {
   edit: boolean,
   passwordEdit: boolean,
-  // sideBtn: Block,
+ 
   display: string,
   button?: Block,
   // User 
@@ -43,7 +43,7 @@ export default class Profile extends Block<Props> {
   init(): void {
     this.props.edit = false;
     this.props.passwordEdit = false;
-    this.children.sideButton = new SideButton({});
+    this.children.sideBtn = new SideBtn({});
     this.props.display = "Ivan";
     this.children.email = new ProfileField({ label: "Email", type: "email", value: "pochta@yandex.ru", name: "email", edit: false });
     this.children.login = new ProfileField({ label: "Login", type: "text", value: "ivanivanov", name: "login", edit: false });

@@ -6,7 +6,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/36568278-6f65-40db-947d-5e88c33b67a6/deploy-status)](https://app.netlify.com/sites/mellifluous-yeot-e81e18/deploys)
 
-## Описание
+## Description
 
 Layouts of the future chat app with simple functionality like 
 - adding/deleting users

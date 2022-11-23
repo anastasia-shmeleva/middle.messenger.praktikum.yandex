@@ -1,8 +1,9 @@
 import Block from "./Block";
 import Route from "./Route";
 
-interface Constructable<P extends Record<string, any>> {
-  new (props: P): Block<P>;
+export interface RouterProps {
+  pathname: string;
+  block: new(...props: any) => Block;
 }
 
 export default class Router {
@@ -21,8 +22,18 @@ export default class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: Constructable<any>) {
-    const route = new Route(pathname, block, this._rootQuery);
+  static getInstance() {
+    return this.__instance;
+  }
+
+  use({
+    pathname, block, 
+  }: RouterProps) {
+    const route = new Route(
+      pathname, 
+      block as new(...props: any) => Block,
+      this._rootQuery,
+    );
     
     this.routes.push(route);
     
@@ -30,7 +41,7 @@ export default class Router {
   }
 
   start() {
-    window.onpopstate = (event: Event) => {
+    window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window;
       this._onRoute(target.location.pathname);
     };
@@ -61,10 +72,10 @@ export default class Router {
   }
 
   back() {
-    this.history.back();
+    this.history.go(-1);
   }
 
   forward() {
-    this.history.forward();
+    this.history.go(1);
   }
 }

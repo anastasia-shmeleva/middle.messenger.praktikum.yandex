@@ -1,9 +1,5 @@
 import Block from "./Block";
 
-interface Constructable<P extends Record<string, any>> {
-  new (props: P): Block<P>;
-}
-
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
 }
@@ -17,11 +13,15 @@ function render(query: string, block: Block) {
 
 export default class Route {
   private _block: Block | null = null;
-  private _pathname;
+  private _pathname: string;
   private _query;
-  private _blockClass;
-  
-  constructor(pathname: string, blockClass: Constructable<any>, query: string) {
+  private _blockClass: new(...props: any) => Block;
+
+  constructor(
+    pathname: string, 
+    blockClass: new(...props: any) => Block, 
+    query: string, 
+  ) {
     this._pathname = pathname;
     this._blockClass = blockClass;
     this._query = query;
@@ -46,7 +46,7 @@ export default class Route {
 
   render() {
     if (!this._block) {
-      this._block = new this._blockClass({});
+      this._block = new this._blockClass();
       render(this._query, this._block);
       return;
     }

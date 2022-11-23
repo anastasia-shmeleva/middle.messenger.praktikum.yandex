@@ -1,14 +1,14 @@
 import Block from "../../utils/Block";
+import Router from "../../utils/Router";
 import template from "./SideBtn.tmpl";
-import { WithRouterProps, withRouter } from "../../utils/withRouter";
 
-interface Props extends WithRouterProps{
+interface Props {
   events?: {
     click: () => void;
   },
 }
 
-export class SideBtn extends Block<Props> {
+export default class SideBtn extends Block<Props> {
   constructor(props: Props) {
     super("div", {
       ...props,
@@ -20,7 +20,7 @@ export class SideBtn extends Block<Props> {
   }
 
   back() {
-    this.props.router.back();
+    Router.getInstance().back();
   }
 
   render(): DocumentFragment {
@@ -28,4 +28,3 @@ export class SideBtn extends Block<Props> {
   }
 }
 
-export const SideButton = withRouter("div", SideBtn as Block<Props>);

@@ -1,8 +1,3 @@
 export default `
-  <button 
-    class="profile-avatar" 
-      {{#if avatar}}
-        style="background-image: url( {{ avatar }} )"
-      {{/if}}
-  ></button>
+  <img src="{{ avatar }}" alt="avatar" class="avatar-img">
 `

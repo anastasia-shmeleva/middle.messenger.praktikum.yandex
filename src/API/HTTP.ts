@@ -8,15 +8,19 @@ const METHODS = {
 };
 
 interface Options {
-  method: string,
-  data: any,
-  timeout: number,
-  headers: Record<string, string>,
-  tries: number,
+  method?: string,
+  data?: any,
+  timeout?: number,
+  headers?: Record<string, string>,
+  tries?: number,
+  mode?: string
+  credentials?: string
 }
 
-export default class HTTPTransport {
-  fetchWithRetry(url: string, options: Options): Promise<XMLHttpRequest | Response> {
+const baseURL = "https://ya-praktikum.tech/api/v2";
+
+export default class HTTP {
+  fetchWithRetry<ResponseType> (url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> {
     const {tries = 1} = options;
   
     const onError = (err: Error) =>{
@@ -31,7 +35,7 @@ export default class HTTPTransport {
     return this.request(url, options).catch(onError);
   } 
 
-  get = (url: string, options: Options): Promise<XMLHttpRequest | Response> => {
+  get = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => {
     let query = '';
     if (options.data) {
       query = queryStringify(options.data);
@@ -39,15 +43,15 @@ export default class HTTPTransport {
     return this.fetchWithRetry(url + query, { ...options, method: METHODS.GET });
   };
 
-  post = (url: string, options: Options): Promise<XMLHttpRequest | Response> => {
+  post = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => {
     return this.fetchWithRetry(url, {...options, method: METHODS.POST});
   };
 
-  put = (url: string, options: Options): Promise<XMLHttpRequest | Response> => {
+  put = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => {
     return this.fetchWithRetry(url, {...options, method: METHODS.PUT});
   };
 
-  delete = (url: string, options: Options): Promise<XMLHttpRequest | Response> => { 
+  delete = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => { 
     return this.fetchWithRetry(url, {...options, method: METHODS.DELETE});
   };
   
@@ -61,7 +65,8 @@ export default class HTTPTransport {
       }
       const xhr = new XMLHttpRequest();
 
-      xhr.open(method, url);
+      xhr.open(method, baseURL + url);
+      xhr.withCredentials = true;
       
       if (headers) {
         Object.keys(headers).forEach(key => {
@@ -73,6 +78,21 @@ export default class HTTPTransport {
         resolve(xhr);
       };
 
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            const contentType = xhr.getResponseHeader("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+              resolve(JSON.parse(xhr.response));
+            } else {
+              resolve(xhr.response );
+            }
+          } else {
+            reject(xhr.response);
+          }
+        }
+      };
+
       xhr.onabort =reject;
       xhr.onerror = reject;
       
@@ -81,8 +101,10 @@ export default class HTTPTransport {
         
       if (!data) {
         xhr.send();
-      } else {
+      } else if (data instanceof FormData) {
         xhr.send(data);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
     });
   };

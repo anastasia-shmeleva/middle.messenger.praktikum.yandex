@@ -2,11 +2,11 @@ import Block from "../../utils/Block";
 import template from "./ChatPreview.tmpl";
 
 interface Props {
-  avatar?: string,
+  avatar: string | null,
   name: string,
   message: string,
   time: string,
-  quantity?: string,
+  quantity: number,
   events: {
     click: (e: Event) => void;
   },

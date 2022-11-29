@@ -1,5 +1,5 @@
 export default `
-  <div class="chat-img" style="background-image: url( {{ avatar }} )"></div>
+  <img src="{{ avatar }}" alt="avatar" class="chat-img" name="chat-img">
   <div class="search-group">
     <div class="search-icon"></div>
     <input 
@@ -9,4 +9,5 @@ export default `
       maxlength="30"
     />
   </div>
+  <div class="add-chat" id="add-chat"></div>
 `;

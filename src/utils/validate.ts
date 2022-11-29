@@ -16,7 +16,7 @@ export const validate = (e: Event, element: HTMLElement, error: string, show: st
   }
 }
 
-export const validateOnSubmit = (e: Event): void => {
+export const validateOnSubmit = (e: Event) => {
   e.preventDefault();
   const form: Record<string, unknown> = {};
   const inputArr = [...document.querySelectorAll("input")];
@@ -25,5 +25,19 @@ export const validateOnSubmit = (e: Event): void => {
     return;
   }
   inputArr.forEach((input: HTMLInputElement) => (form[input.name] = input.value));
-  console.log(form);
+  return form;
 }
+
+export const validateForm = (inputs: NodeListOf<HTMLInputElement>) => {
+  const validated: boolean[] = [];
+
+  if (inputs) {
+    inputs.forEach((input) => {
+      const rule = REGEXP[input.name].rule as RegExp;
+      const isValid = rule.test(input.value);
+      validated.push(isValid);
+    });
+  }
+
+  return !validated.includes(false);
+};

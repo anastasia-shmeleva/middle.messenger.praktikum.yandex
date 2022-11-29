@@ -12,6 +12,12 @@
 
   & label {
     color: var(--main-font);
+
+    &.file-upload {
+      color: var(--color-main);
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
   & input {
@@ -19,5 +25,9 @@
     text-align: end;
     background-color: transparent;
     color: var(--shade-color);
+  }
+
+  & input[type="file"] {
+    display: none;
   }
 }

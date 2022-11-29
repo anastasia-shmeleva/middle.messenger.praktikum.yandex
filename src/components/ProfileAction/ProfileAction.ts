@@ -3,7 +3,6 @@ import template from "./ProfileAction.tmpl";
 
 interface Props {
   class?: string,
-  link: string,
   name: string,
   events: {
     click: (e: Event) => void;

@@ -5,7 +5,7 @@ import Handlebars from "handlebars";
 type Props = Record<string, any>;
 type Children = Record<string, Block>;
 
-export default abstract class Block<
+export default class Block<
   P extends Props = any
 > {
   static readonly EVENTS = {
@@ -45,7 +45,6 @@ export default abstract class Block<
   init() {
     this._element = this.createDocumentElement(this._meta?.tag);
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-    console.log(this._element)
   }
 
   createDocumentElement(tag: string): HTMLElement {
@@ -80,7 +79,6 @@ export default abstract class Block<
   }
 
   getChildren(propsAndChildren: P) {
-    console.log(propsAndChildren)
     const children: Children = {};
     const props: Props = {};
     Object.entries(propsAndChildren).forEach(([key, value]) => {

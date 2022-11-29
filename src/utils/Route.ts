@@ -1,4 +1,5 @@
 import Block from "./Block";
+import { RouteProps } from "./types";
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -14,17 +15,17 @@ function render(query: string, block: Block) {
 export default class Route {
   private _block: Block | null = null;
   private _pathname: string;
-  private _query;
+  private _props: RouteProps;
   private _blockClass: new(...props: any) => Block;
 
   constructor(
     pathname: string, 
-    blockClass: new(...props: any) => Block, 
-    query: string, 
+    view: new(...props: any) => Block, 
+    props: RouteProps
   ) {
     this._pathname = pathname;
-    this._blockClass = blockClass;
-    this._query = query;
+    this._blockClass = view;
+    this._props = props;
   }
 
   navigate(pathname: string) {
@@ -46,9 +47,11 @@ export default class Route {
 
   render() {
     if (!this._block) {
-      this._block = new this._blockClass();
-      render(this._query, this._block);
+      this._block = new this._blockClass({});
+      render(this._props.rootQuery, this._block);
       return;
+    } else {
+      render(this._props.rootQuery, this._block);
     }
 
     this._block.show();

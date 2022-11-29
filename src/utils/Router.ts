@@ -1,10 +1,5 @@
-import Block from "./Block";
 import Route from "./Route";
-
-export interface RouterProps {
-  pathname: string;
-  block: new(...props: any) => Block;
-}
+import { RouterProps } from "./types";
 
 export default class Router {
   private static __instance: Router;
@@ -27,12 +22,12 @@ export default class Router {
   }
 
   use({
-    pathname, block, 
+    pathname, block
   }: RouterProps) {
     const route = new Route(
       pathname, 
-      block as new(...props: any) => Block,
-      this._rootQuery,
+      block,
+      { rootQuery: this._rootQuery }
     );
     
     this.routes.push(route);

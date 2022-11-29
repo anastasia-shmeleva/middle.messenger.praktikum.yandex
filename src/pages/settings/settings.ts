@@ -11,6 +11,7 @@ import { store } from "../../store/store";
 import { validateForm } from "../../utils/validate";
 import Router from "../../utils/Router";
 import { User } from "../../utils/types";
+import HTTP from "../../API/HTTP";
 
 interface Props {
   user: User | null,
@@ -37,7 +38,7 @@ class Settings extends Block<Props> {
     (this.element!.querySelector("#second_name") as HTMLInputElement)!.value = (user as User).second_name as string | "";
     (this.element!.querySelector("#display_name") as HTMLInputElement)!.value = (user as User).display_name as string | "";
     (this.element!.querySelector("#phone") as HTMLInputElement)!.value = (user as User).phone as string | "";
-    (this.element!.querySelector(".avatar-img") as HTMLImageElement)!.src = `https://ya-praktikum.tech/api/v2/resources${(user as User).avatar as string | ""}`;
+    (this.element!.querySelector(".avatar-img") as HTMLImageElement)!.src = `${HTTP.BASE_URL}/resources${(user as User).avatar as string | ""}`;
   }
 
   update(e: Event) {

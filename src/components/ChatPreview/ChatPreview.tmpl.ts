@@ -1,5 +1,5 @@
 export default `
-  <img src="{{ avatar }}" alt="avatar" class="chat-img" name="chat-img">
+  <img src="{{ avatar }}" alt="avatar" class="chat-img">
   <div class="item-group__body">
     <span class="chat-name">{{ name }}</span>
     <span class="chat-text">{{ message }}</span>

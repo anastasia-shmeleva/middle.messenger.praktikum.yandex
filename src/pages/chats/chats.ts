@@ -16,6 +16,8 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import UserController from "../../controllers/UserController";
 import { ws } from "../..";
 import Message from "../../components/Message/Message";
+import HTTP from "../../API/HTTP";
+import { avatarStub } from "../profile/profile";
 
 interface Props {
   chatListHeader: Block,
@@ -28,7 +30,7 @@ interface Props {
 
 class Chats extends Block<Props> {
   constructor(props: Props) {
-    super("div", props);
+    super("main", props);
     this.element?.classList.add("wrapper");
   }
 
@@ -38,7 +40,7 @@ class Chats extends Block<Props> {
 
   updateUser() {
     const { user } = store.getState();
-    (this.element!.querySelectorAll(".chat-img")[0] as HTMLImageElement)!.src = `https://ya-praktikum.tech/api/v2/resources${(user as User).avatar as string | ""}`;
+    (this.element!.querySelectorAll(".chat-img")[0] as HTMLImageElement)!.src = (user as User).avatar !== null ? `${HTTP.BASE_URL}/resources${(user as User).avatar as string | ""}` : avatarStub;
   }
 
   getChats() {
@@ -51,14 +53,13 @@ class Chats extends Block<Props> {
  
     (chatList as Chat[]).map((item) => {
       const chatPreview = new ChatPreview({ 
-        avatar: item.avatar,
+        avatar: item.avatar !== null ? `${HTTP.BASE_URL}/resources/${item.avatar}` : avatarStub,
         name: item.title, 
         message: item.last_message?.content, 
         time:  new Date(item.last_message?.time).toLocaleTimeString().split('').slice(0, 5).join(''), 
         quantity: item.unread_count,
         events: {
-          click: (e) => {
-            e.preventDefault();
+          click: () => {
             store.set("currentChatId", item.id);
             this.getCurrentChat();
             ws.connect();
@@ -77,7 +78,7 @@ class Chats extends Block<Props> {
 
     const chat = new ChatBlock({ 
       stub: false,
-      avatar: currentChat!.avatar,
+      avatar: currentChat!.avatar !== null ? `${HTTP.BASE_URL}/resources/${currentChat!.avatar}` : avatarStub,
       currentChatName: currentChat!.title,
       dropdown: new Dropdown({
         events: {
@@ -304,7 +305,7 @@ class Chats extends Block<Props> {
 const chatWithStore = connect((state) => ({
   user: state.user || "",
   chats: state.chatList,
-  messageList: state.messageList || [],
+  messageList: state.messageList,
   currentChatId: state.currentChatId || null,
 }));
 

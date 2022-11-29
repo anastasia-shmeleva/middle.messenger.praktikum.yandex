@@ -17,10 +17,17 @@ interface Options {
   credentials?: string
 }
 
-const baseURL = "https://ya-praktikum.tech/api/v2";
+type HTTPMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>
 
 export default class HTTP {
-  fetchWithRetry<ResponseType> (url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> {
+  static BASE_URL = "https://ya-praktikum.tech/api/v2";
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTP.BASE_URL}${endpoint}`;
+  }
+
+  fetchWithRetry (url: string, options: Options): Promise<XMLHttpRequest> {
     const {tries = 1} = options;
   
     const onError = (err: Error) =>{
@@ -32,30 +39,30 @@ export default class HTTP {
       return this.fetchWithRetry(url, {...options, tries: triesLeft});
     }
   
-    return this.request(url, options).catch(onError);
+    return this.request(url, options).catch(onError) as Promise<XMLHttpRequest>;
   } 
 
-  get = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => {
+  get: HTTPMethod = (path: string, options = {}) => {
     let query = '';
     if (options.data) {
       query = queryStringify(options.data);
     }
-    return this.fetchWithRetry(url + query, { ...options, method: METHODS.GET });
+    return this.fetchWithRetry(this.endpoint + path + query, { ...options, method: METHODS.GET });
   };
 
-  post = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => {
-    return this.fetchWithRetry(url, {...options, method: METHODS.POST});
+  post: HTTPMethod = (path: string, options = {}) => {
+    return this.fetchWithRetry(this.endpoint + path, {...options, method: METHODS.POST});
   };
 
-  put = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => {
-    return this.fetchWithRetry(url, {...options, method: METHODS.PUT});
+  put: HTTPMethod = (path: string, options = {}) => {
+    return this.fetchWithRetry(this.endpoint + path, {...options, method: METHODS.PUT});
   };
 
-  delete = <ResponseType>(url: string, options: Options): Promise<XMLHttpRequest | ResponseType | unknown> => { 
-    return this.fetchWithRetry(url, {...options, method: METHODS.DELETE});
+  delete: HTTPMethod = (path: string, options = {}) => { 
+    return this.fetchWithRetry(this.endpoint + path, {...options, method: METHODS.DELETE});
   };
   
-  request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
+  request = (url: string, options: Options, timeout = 5000) => {
     const {headers = {}, method, data} = options;
     
     return new Promise((resolve, reject) => {
@@ -65,7 +72,7 @@ export default class HTTP {
       }
       const xhr = new XMLHttpRequest();
 
-      xhr.open(method, baseURL + url);
+      xhr.open(method, url);
       xhr.withCredentials = true;
       
       if (headers) {

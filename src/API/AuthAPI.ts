@@ -5,24 +5,24 @@ export default class AuthAPI {
   protected http: HTTP;
 
   constructor() {
-    this.http = new HTTP();
+    this.http = new HTTP("/auth/");
   }
 
   headers: Record<string, string> = { "Content-Type": "application/json" };
 
   signUp(data: SignUpData): Promise<string | unknown> {
-    return this.http.post("/auth/signup", { data, headers: this.headers });
+    return this.http.post("signup", { data, headers: this.headers });
   }
 
   signIn(data: SignInData): Promise<string | unknown> {
-    return this.http.post("/auth/signin", { data, headers: this.headers });
+    return this.http.post("signin", { data, headers: this.headers });
   }
 
   logout(): Promise<string | unknown> {
-    return this.http.post("/auth/logout", { headers: this.headers });
+    return this.http.post("logout", { headers: this.headers });
   }
 
   read(): Promise<User | unknown> {
-    return this.http.get("/auth/user", {});
+    return this.http.get("user", {});
   }
 }

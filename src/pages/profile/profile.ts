@@ -12,14 +12,17 @@ import { connect } from "../../store/connect";
 import { User } from "../../utils/types";
 import UserController from "../../controllers/UserController";
 import { store } from "../../store/store";
+import HTTP from "../../API/HTTP";
 
 interface Props {
   user: User | null,
 }
 
+export const avatarStub = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
 class Profile extends Block<Props> {
   constructor(props: Props) {
-    super("div", props);
+    super("main", props);
     this.element?.classList.add("profile-container");
   }
 
@@ -63,7 +66,8 @@ class Profile extends Block<Props> {
     (this.element!.querySelector("#second_name") as HTMLInputElement)!.value = (user as User).second_name as string | "";
     (this.element!.querySelector("#display_name") as HTMLInputElement)!.value = (user as User).display_name as string | "";
     (this.element!.querySelector("#phone") as HTMLInputElement)!.value = (user as User).phone as string | "";
-    (this.element!.querySelector(".avatar-img") as HTMLImageElement)!.src = `https://ya-praktikum.tech/api/v2/resources${(user as User).avatar as string | ""}`;
+    (this.element!.querySelector(".avatar-img") as HTMLImageElement)!.src = (user as User).avatar !== null ? 
+    `${HTTP.BASE_URL}/resources${(user as User).avatar as string | ""}` : avatarStub;
   }
 
   init(): void {

@@ -22,7 +22,7 @@ export const REGEXP: Record<string, REGEXP> = {
   },
   display_name: {
     rule: /(^[A-ZА-Я])([Ёёа-яА-Я-]*$)|(^[a-zA-Z-]*$)/,
-    error: "Start with capital letter",
+    error: "Start with capital letter, no space",
   },
   phone: {
     rule: /^(\(\d{2,}\) ((\d{4}-\d{4})|(9\d{4}-\d{4})))|(\d{2})((9\d{8})|(\d{8}))$/,

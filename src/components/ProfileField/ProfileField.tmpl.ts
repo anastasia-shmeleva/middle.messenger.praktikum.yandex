@@ -8,4 +8,5 @@ export default `
     placeholder=" "
     {{#unless edit}} disabled {{/unless}}
   />
+  <p class='form__error'></p>
 `

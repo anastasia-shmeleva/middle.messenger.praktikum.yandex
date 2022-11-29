@@ -15,10 +15,6 @@ export default class Websocket {
   private interval = 0;
 
   private open() {
-    // this.socket!.send(JSON.stringify({
-    //   content: 'Моё первое сообщение миру!',
-    //   type: 'message',
-    // }));
     this.getMessages();
     this.ping();
   }
@@ -51,24 +47,28 @@ export default class Websocket {
   }
 
   private message(e: any) {
-    const data = JSON.parse(e.data);
+    try {
+      const data = JSON.parse(e.data);
     
-    if (data.type === "message") {
-      const messageList = (store.getState() as unknown as State).messageList || [];
-      messageList.push({
-        sentBy: data.user_id,
-        content: data.content,
-        time: data.time,
-      });
-      store.set("messageList", messageList);
-    } else if (Array.isArray(data)) {
-      const oldMessageList = data.map((item) => ({
-        sentBy: item.user_id,
-        content: item.content,
-        time: item.time,
-      })).reverse();
-      store.set("messageList", oldMessageList);
-    } 
+      if (data.type === "message") {
+        const messageList = (store.getState() as unknown as State).messageList || [];
+        messageList.push({
+          sentBy: data.user_id,
+          content: data.content,
+          time: data.time,
+        });
+        store.set("messageList", messageList);
+      } else if (Array.isArray(data)) {
+        const oldMessageList = data.map((item) => ({
+          sentBy: item.user_id,
+          content: item.content,
+          time: item.time,
+        })).reverse();
+        store.set("messageList", oldMessageList);
+      } 
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   sendMessage(content: string) {
@@ -94,9 +94,9 @@ export default class Websocket {
     const message = this.message.bind(this);
     const error = this.error.bind(this);
 
-    const http = new HTTP();
+    const http = new HTTP("/chats/");
     http
-      .post(`/chats/token/${chatId}`, { mode: "cors", credentials: "include" })
+      .post(`token/${chatId}`, { mode: "cors", credentials: "include" })
       .then((data: any) => {
         this.socket = new WebSocket(`wss://${this.baseURL}/ws/chats/${userId}/${chatId}/${data.token}`);
         this.socket.addEventListener(EVENTS.OPEN, open);

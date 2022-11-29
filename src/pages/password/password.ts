@@ -11,6 +11,7 @@ import UserController from "../../controllers/UserController";
 import { store } from "../../store/store";
 import Router from "../../utils/Router";
 import { validateForm } from "../../utils/validate";
+import HTTP from "../../API/HTTP";
 
 interface Props {
   user: User | null,
@@ -31,7 +32,7 @@ class Password extends Block<Props> {
 
   updateUser() {
     const { user } = store.getState();
-    (this.element!.querySelector(".avatar-img") as HTMLImageElement)!.src = `https://ya-praktikum.tech/api/v2/resources${(user as User).avatar as string | ""}`;
+    (this.element!.querySelector(".avatar-img") as HTMLImageElement)!.src = `${HTTP.BASE_URL}/resources${(user as User).avatar as string | ""}`;
   }
 
   updatePassword(e: Event) {

@@ -13,7 +13,7 @@ interface Props {
 
 export default class Login extends Block<Props> {
   constructor(props: Props) {
-    super("div", props);
+    super("main", props);
     this.element?.classList.add("container");
   }
 

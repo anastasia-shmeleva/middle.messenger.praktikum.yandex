@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+  position: relative;
 
   &:not(:last-of-type) {
     border-bottom: 1px solid var(--color-decoration);

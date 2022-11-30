@@ -140,6 +140,13 @@ class Profile extends Block<Props> {
 
     super.init();
   }
+
+  componentDidUpdate(_oldProps: Props, newProps: Props): boolean {
+    if (newProps.user) {
+      this.updateUser();
+    }
+    return false
+  }
 }
 
 const profileWithStore = connect((state) => ({

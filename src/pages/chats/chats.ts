@@ -21,8 +21,10 @@ import { avatarStub } from "../profile/profile";
 import { scrollToBottom } from "../../utils/scrollToBottom";
 
 interface Props {
-  chatListHeader: Block,
-  chat: Block,
+  chats: Chat[];
+  currentChatId: number;
+  user: User;
+  messageList: messageListType[];
   events: {
     click: (e: Event) => void;
     submit: (e: SubmitEvent) => void
@@ -159,6 +161,11 @@ class Chats extends Block<Props> {
 
   getMessages() {
     const { messageList, user } = store.getState();
+    const messagesContainer = this.element?.querySelector(".chats-main__body");
+    const messages = this.element?.querySelectorAll(".message");
+    if (messages) {
+      messages.forEach((message) => messagesContainer?.removeChild(message))
+    }
 
     if (!messageList) {
       return console.error("no chat selected")
@@ -176,7 +183,6 @@ class Chats extends Block<Props> {
       });
     });
 
-    const messagesContainer = this.element?.querySelector(".chats-main__body");
     messagesContainer && messageArr.forEach((item) => messagesContainer.append(item.getContent()!))
   }
 
@@ -301,6 +307,16 @@ class Chats extends Block<Props> {
     });
     
     super.init();
+  }
+
+  componentDidUpdate(_oldProps: Props, newProps: Props): boolean {
+    if (newProps.chats) {
+      this.getChats();
+    }
+    if (newProps.messageList) {
+      this.getMessages();
+    }
+    return false
   }
 }
 

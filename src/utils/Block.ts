@@ -1,6 +1,7 @@
 import EventBus from "./EventBus";
 import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
+import isEqual from "./isEqual";
 
 type Props = Record<string, any>;
 type Children = Record<string, Block>;
@@ -135,7 +136,7 @@ export default class Block<
   }
 
   componentDidUpdate(oldProps: P, newProps: P): boolean {
-    return oldProps.text !== newProps.text;
+    return isEqual(oldProps, newProps)
   }
 
   setProps = (newProps: P) => {

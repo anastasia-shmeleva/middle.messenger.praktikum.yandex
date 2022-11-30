@@ -6,6 +6,7 @@
   border-radius: 0 8px 8px;
   margin: 0 auto 10px 20px;
   max-width: 40%;
+  width: fit-content;
 
   &.sent {
     background-color: #dce5d1;
@@ -23,4 +24,5 @@
   font-size: 9px;
   line-height: 9px;
   float: right;
+  padding-left: 5px;
 }

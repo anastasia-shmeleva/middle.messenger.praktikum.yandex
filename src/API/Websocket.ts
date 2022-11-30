@@ -1,6 +1,7 @@
 import { store } from "../store/store";
 import { State } from "../utils/types";
 import HTTP from "./HTTP";
+import { scrollToBottom } from "../utils/scrollToBottom";
 
 const EVENTS = {
   OPEN: "open",
@@ -22,7 +23,7 @@ export default class Websocket {
   private ping() {
     if (this.interval !== 0) {
       clearInterval(this.interval);
-      this.interval = 0;
+      return this.interval = 0;
     }
     this.interval = window.setInterval(() => {
       this.socket!.send(
@@ -65,6 +66,7 @@ export default class Websocket {
           time: item.time,
         })).reverse();
         store.set("messageList", oldMessageList);
+        scrollToBottom();
       } 
     } catch (e) {
       console.error(e);
@@ -86,6 +88,7 @@ export default class Websocket {
   }
 
   connect() {
+    this.socket?.close();
     const chatId = store.getState().currentChatId;
     const userId = (store.getState() as unknown as State).user?.id;
 

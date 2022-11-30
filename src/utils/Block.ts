@@ -53,6 +53,7 @@ export default class Block<
 
   private _render() {
     const fragment = this.render();
+    this.removeEvents();
     this._element!.innerHTML = '';
     this._element!.append(fragment);
     this.addEvents();

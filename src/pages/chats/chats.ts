@@ -18,6 +18,7 @@ import { ws } from "../..";
 import Message from "../../components/Message/Message";
 import HTTP from "../../API/HTTP";
 import { avatarStub } from "../profile/profile";
+import { scrollToBottom } from "../../utils/scrollToBottom";
 
 interface Props {
   chatListHeader: Block,
@@ -75,7 +76,7 @@ class Chats extends Block<Props> {
     const { chatList, currentChatId } = store.getState();
     const currentChat = (chatList as Chat[])!.find((chat: Chat) => chat.id === currentChatId);
     const chatContainer = this.element?.querySelector(".chat-main");
-
+    
     const chat = new ChatBlock({ 
       stub: false,
       avatar: currentChat!.avatar !== null ? `${HTTP.BASE_URL}/resources/${currentChat!.avatar}` : avatarStub,
@@ -107,7 +108,7 @@ class Chats extends Block<Props> {
     ChatController.deleteChat(currentChatId).then(() => {
       ChatController.getChats().then(() => {
         this.getChats();
-        window.location.reload();
+        ChatController.getChats();
       }).catch((e) => {
         console.error(e);
       });
@@ -201,6 +202,7 @@ class Chats extends Block<Props> {
 
   sendMessage(content: string) {
     ws.sendMessage(content);
+    scrollToBottom();
   }
 
   init(): void {

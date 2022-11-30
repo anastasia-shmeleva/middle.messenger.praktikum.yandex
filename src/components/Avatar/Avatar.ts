@@ -3,7 +3,7 @@ import template from "./Avatar.tmpl";
 
 interface Props {
   avatar?: string,
-  events: {
+  events?: {
     click: () => void;
   },
 }
@@ -11,6 +11,7 @@ interface Props {
 export default class Avatar extends Block<Props> {
   constructor(props: Props) {
     super("div", props);
+    this.element?.classList.add("profile-avatar");
   }
   
   render(): DocumentFragment {

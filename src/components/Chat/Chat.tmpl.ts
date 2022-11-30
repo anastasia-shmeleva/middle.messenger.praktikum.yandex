@@ -1,6 +1,6 @@
 export default `
-  {{#if empty}}
-    <span>{{ stub }}</span>
+  {{#if stub}}
+    <span>Choose chat to send a message</span>
   {{else}}
     <div class="chats-main__header">
       <img src="{{ avatar }}" alt="avatar" class="chats-main__avatar" />
@@ -9,24 +9,23 @@ export default `
         <li class="dot"></li>
         <li class="dot"></li>
         <li class="dot"></li>
+        {{{ dropdown }}}
       </ul>
     </div>
 
     <div class="chats-main__body"></div>
 
-    <div class="chats-main__footer">
+    <form class="chats-main__footer">
       <div class="chats-main__actions-clip"></div>
       <input 
         class="chats-main__input" 
         type=text
-        id=""
+        id="message"
         name="message"
         value=""
         placeholder="Type here"
       />
-      <button class="chats-main__submit-button">
-        <div class="chats-main__arrow"></div>
-      </button>
-    </div>
+      <button class="chats-main__submit-button" type="submit"></button>
+    </form>
   {{/if}}
 `;

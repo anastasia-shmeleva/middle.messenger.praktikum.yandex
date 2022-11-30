@@ -1,11 +1,12 @@
 import EventBus from "./EventBus";
 import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
+import isEqual from "./isEqual";
 
 type Props = Record<string, any>;
 type Children = Record<string, Block>;
 
-export default abstract class Block<
+export default class Block<
   P extends Props = any
 > {
   static readonly EVENTS = {
@@ -53,6 +54,7 @@ export default abstract class Block<
 
   private _render() {
     const fragment = this.render();
+    this.removeEvents();
     this._element!.innerHTML = '';
     this._element!.append(fragment);
     this.addEvents();
@@ -134,7 +136,7 @@ export default abstract class Block<
   }
 
   componentDidUpdate(oldProps: P, newProps: P): boolean {
-    return oldProps.text !== newProps.text;
+    return isEqual(oldProps, newProps)
   }
 
   setProps = (newProps: P) => {

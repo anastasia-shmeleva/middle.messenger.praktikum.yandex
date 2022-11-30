@@ -1,37 +1,72 @@
 import "./styles/style.css";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
-import { Error404, Error500 } from "./pages/error/error";
 import Profile from "./pages/profile/profile";
-import Chats from "./pages/chats/chats"
+import Settings from "./pages/settings/settings";
+import Password from "./pages/password/password";
+import Chats from "./pages/chats/chats";
+import { Error404, Error500 } from "./pages/error/error";
+import Router from "./utils/Router";
+import { User } from "./utils/types";
+import AuthController from "./controllers/AuthController";
+import Websocket from "./API/Websocket";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.querySelector('#app')!;
-  if (window.location.pathname === '/') {
-    window.location.replace('/signin');
-  }
-  if (window.location.pathname === '/signin') {
-    root.append(Login.getContent()!);
-    Login.dispatchComponentDidMount();
-  }
-  if (window.location.pathname === '/signup') {
-    root.append(Register.getContent()!);
-    Register.dispatchComponentDidMount();
-  }
-  if (window.location.pathname === '/error500') {
-    root.append(Error500.getContent()!);
-    Error500.dispatchComponentDidMount();
-  }
-  if (window.location.pathname === '/error404') {
-    root.append(Error404.getContent()!);
-    Error404.dispatchComponentDidMount();
-  }
-  if (window.location.pathname === '/profile') {
-    root.append(Profile.getContent()!);
-    Profile.dispatchComponentDidMount();
-  }
-  if (window.location.pathname === '/chats') {
-    root.append(Chats.getContent()!);
-    Chats.dispatchComponentDidMount();
-  }
-});
+const router = new Router("#app");
+export const ws = new Websocket();
+
+async function start() {
+  let user: User | unknown = null;
+
+  const checkAuth = async () => {
+    try {
+      user = await AuthController.getUser();
+      return true;
+    } catch (e) {
+      Router.getInstance().go("/");
+      return false;
+    }
+  };
+
+  await checkAuth().then(() => {
+    if ((window.location.pathname === "/" && user) || (window.location.pathname == "/sign-up" && user)) {
+      Router.getInstance().go("/messenger");
+    }
+  });
+
+  router
+    .use({
+      pathname: "/", 
+      block: Login, 
+    })
+    .use({
+      pathname: "/sign-up", 
+      block: Register, 
+    })
+    .use({
+      pathname: "/settings", 
+      block: Profile, 
+    })
+    .use({
+      pathname: "/settings/profile", 
+      block: Settings, 
+    })
+    .use({
+      pathname: "/settings/password", 
+      block: Password, 
+    })
+    .use({
+      pathname: "/messenger", 
+      block: Chats, 
+    })
+    .use({ 
+      pathname: '/500', 
+      block: Error500, 
+    })
+    .use({ 
+      pathname: '/404', 
+      block: Error404, 
+    })
+    .start();
+}
+
+start();

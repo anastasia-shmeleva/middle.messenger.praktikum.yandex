@@ -1,12 +1,12 @@
 export default `
   <span class="form-header">{{ name }}</span>
-  {{{ emailField }}}
-  {{{ loginField }}}
-  {{{ firstNameField }}}
-  {{{ secondNameField }}}
-  {{{ phoneField }}}
-  {{{ passwordField }}}
-  {{{ confirmPasswordField }}}
+  {{{ email }}}
+  {{{ login }}}
+  {{{ firstName }}}
+  {{{ secondName }}}
+  {{{ phone }}}
+  {{{ password }}}
+  {{{ confirmPassword }}}
   <div class="form-footer">
     {{{ button }}}
     <span class="forward">

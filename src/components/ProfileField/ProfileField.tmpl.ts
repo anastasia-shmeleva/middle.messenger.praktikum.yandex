@@ -1,11 +1,12 @@
 export default `
-  <label for="{{ name }}">{{ label }}</label>
+  <label for="{{ name }}" class="{{ class }}" >{{ label }}</label>
   <input 
-    id="{{ name}}" 
-    type={{ type }} 
+    id="{{ name }}" 
+    type="{{ type }}"
     name="{{ name }}"
     value="{{ value }}"
     placeholder=" "
     {{#unless edit}} disabled {{/unless}}
   />
+  <p class='form__error'></p>
 `

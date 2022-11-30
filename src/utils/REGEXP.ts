@@ -20,6 +20,10 @@ export const REGEXP: Record<string, REGEXP> = {
     rule: /(^[A-ZА-Я])([Ёёа-яА-Я-]*$)|(^[a-zA-Z-]*$)/,
     error: "Start with capital letter",
   },
+  display_name: {
+    rule: /(^[A-ZА-Я])([Ёёа-яА-Я-]*$)|(^[a-zA-Z-]*$)/,
+    error: "Start with capital letter, no space",
+  },
   phone: {
     rule: /^(\(\d{2,}\) ((\d{4}-\d{4})|(9\d{4}-\d{4})))|(\d{2})((9\d{8})|(\d{8}))$/,
     error: "Please, provide valid phone number",
@@ -28,11 +32,23 @@ export const REGEXP: Record<string, REGEXP> = {
     rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
     error: "8 to 40 symbols, at least 1 number, at least one capital letter",
   },
-  confirm_password: {
+  oldPassword: {
+    rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
+    error: "8 to 40 symbols, at least 1 number, at least one capital letter",
+  },
+  newPassword: {
+    rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
+    error: "8 to 40 symbols, at least 1 number, at least one capital letter",
+  },
+  confirmPassword: {
     rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
     error: "8 to 40 symbols, at least 1 number, at least one capital letter",
   },
   message: {
+    rule: /(.|\s)*\S(.|\s)*/,
+    error: 'Should not be empty',
+  },
+  addChat: {
     rule: /(.|\s)*\S(.|\s)*/,
     error: 'Should not be empty',
   },

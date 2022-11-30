@@ -1,10 +1,12 @@
 import Block from "../../utils/Block";
+import { validate } from "../../utils/validate";
 import template from "./ProfileField.tmpl";
 
 interface Props {
-  edit?: boolean,
+  edit: boolean,
   label: string,
-  type: string,
+  class?: string,
+  type?: string,
   name: string,
   value?: string,
   events?: {
@@ -28,10 +30,10 @@ export default class ProfileField extends Block<Props> {
   }
 
   onFocus = (e: Event): void => {
-    console.log(e)
+    validate(e, this.element!, ".form__error", "show")
   };
 
   onBlur = (e: Event): void => {
-    console.log(e)
+    validate(e, this.element!, ".form__error", "show")
   };
 }

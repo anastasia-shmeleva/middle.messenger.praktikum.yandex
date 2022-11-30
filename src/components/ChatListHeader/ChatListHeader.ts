@@ -2,7 +2,7 @@ import template from "./ChatListHeader.tmpl";
 import Block from "../../utils/Block";
 
 interface Props {
-  avatar: string,
+  avatar?: string,
 }
 
 export default class ChatListHeader extends Block<Props> {

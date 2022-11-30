@@ -3,36 +3,52 @@ import Block from "../../utils/Block";
 import Form from "../../components/Form/Form";
 import FormField from "../../components/FormField/FormField";
 import Button from "../../components/Button/Button";
+import AuthController from "../../controllers/AuthController";
+import { SignUpData } from "../../utils/types";
+import Router from "../../utils/Router";
 
 interface Props {
   form: Block,
 }
 
-class Register extends Block<Props> {
+export default class Register extends Block<Props> {
   constructor(props: Props) {
-    super("div", props);
+    super("main", props);
     this.element?.classList.add("container");
+  }
+
+  signUp(data: SignUpData) {
+    if (data) {
+      AuthController
+        .signUp(data)
+        .then(() => {
+          Router.getInstance().go("/messenger");
+        }).catch((e) => {
+          console.error(e)
+        });
+    }
   }
 
   render(): DocumentFragment {
     return this.compile(template, this.props);
   }
+
+  init(): void {
+    this.children.form = new Form({
+      name: "Register",
+      email: new FormField({ label: "Email", type: "text", value: "", name: "email" }),
+      login: new FormField({ label: "Login", type: "text", value: "", name: "login" }),
+      firstName: new FormField({ label: "Name", type: "text", value: "", name: "firstName" }),
+      secondName: new FormField({ label: "Second name", type: "text", value: "", name: "secondName" }),
+      phone: new FormField({ label: "Phone", type: "text", value: "", name: "phone" }),
+      password: new FormField({ label: "Password", type: "password", value: "", name: "newPassword" }),
+      confirmPassword: new FormField({ label: "Confirm password", type: "password", value: "", name: "confirmPassword" }),
+      button: new Button({ name: "Sign up", type: "submit" }),
+      linkTitle: "Sign in",
+      link: "/",
+      controller: this.signUp,
+    });
+
+    super.init();
+  }
 }
-
-const RegisterPage = new Register({
-  form: new Form({
-    name: "Register",
-    emailField: new FormField({ label: "Email", type: "text", value: "", name: "email" }),
-    loginField: new FormField({ label: "Login", type: "text", value: "", name: "login" }),
-    firstNameField: new FormField({ label: "Name", type: "text", value: "", name: "first_name" }),
-    secondNameField: new FormField({ label: "Second name", type: "text", value: "", name: "second_name" }),
-    phoneField: new FormField({ label: "Phone", type: "text", value: "", name: "phone" }),
-    passwordField: new FormField({ label: "Password", type: "password", value: "", name: "password" }),
-    confirmPasswordField: new FormField({ label: "Confirm password", type: "password", value: "", name: "confirm_password" }),
-    button: new Button({ name: "Sign up" }),
-    linkTitle: "Sign in",
-    link: "/signin",
-    }),
-});
-
-export default RegisterPage;

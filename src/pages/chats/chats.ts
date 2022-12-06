@@ -14,7 +14,7 @@ import Router from "../../utils/Router";
 import FormField from "../../components/FormField/FormField";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import UserController from "../../controllers/UserController";
-import { ws } from "../..";
+import { ws } from "../../index";
 import Message from "../../components/Message/Message";
 import HTTP from "../../API/HTTP";
 import { avatarStub } from "../profile/profile";

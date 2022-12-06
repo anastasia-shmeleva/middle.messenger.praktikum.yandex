@@ -33,6 +33,17 @@ async function start() {
     }
   });
 
+  if (
+    window.location.pathname !== "/" && 
+    window.location.pathname !== "/sign-up" && 
+    window.location.pathname !== "/settings" && 
+    window.location.pathname !== "/settings/profile" && 
+    window.location.pathname !== "/settings/password" && 
+    window.location.pathname !== "/messenger"
+  ) {
+    Router.getInstance().go("/404");
+  }
+
   router
     .use({
       pathname: "/", 

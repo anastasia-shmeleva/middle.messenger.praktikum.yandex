@@ -1,7 +1,0 @@
-{
-  "plugins": {
-    "postcss-nested": true,
-    "postcss-import": true,
-    "postcss-css-variables": true
-  }
-}

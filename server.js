@@ -1,4 +1,5 @@
-import express from 'express';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const express = require('express');
 
 const app = express();
 const port = process.env.PORT || 3000;

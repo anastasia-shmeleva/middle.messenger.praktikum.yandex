@@ -1,5 +1,4 @@
 import HTTP from "./HTTP";
-import { before, describe } from 'mocha';
 import { expect } from "chai";
 
 describe("Module for requests to API", () => {

@@ -19,6 +19,7 @@ import Message from "../../components/Message/Message";
 import HTTP from "../../API/HTTP";
 import { avatarStub } from "../profile/profile";
 import { scrollToBottom } from "../../utils/scrollToBottom";
+import ProfileField from "../../components/ProfileField/ProfileField";
 
 interface Props {
   chats: Chat[];
@@ -211,6 +212,21 @@ class Chats extends Block<Props> {
     scrollToBottom();
   }
 
+  updateAvatar(e: any) {
+    e.preventDefault();
+    const { currentChatId } = store.getState();
+    const data = e.target as HTMLFormElement;
+    const formData = new FormData(data);
+    formData.append('chatId', currentChatId as string)
+    ChatController
+      .updateAvatar(formData)
+      .then(() => {
+        location.reload();
+      }).catch((e) => {
+        console.error(e)
+      });
+  }
+
   init(): void {
     this.children.chatListHeader = new ChatListHeader({});
     this.children.chat = new ChatBlock({ 
@@ -247,6 +263,25 @@ class Chats extends Block<Props> {
         click: (e: Event) => {         
           if (e.target === this.element?.getElementsByClassName("cancel")[0]) {
             this.togglePopup(".popup.add-chat");
+          }
+        }
+      },
+    });
+
+    this.children.addAvatarPopup = new Popup({
+      title: "Upload photo",
+      content: new ProfileField({ label: "Click to select file", class:"file-upload", type: "file", name: "avatar", edit: true}),
+      button_save: new Button({ name: "Save", type: "submit", class: "save" }),
+      button_cancel: new Button({ name: "Cancel", class: "cancel" }),
+      class: "add-avatar",
+      events: {
+        submit: (e: SubmitEvent) => {
+          this.updateAvatar(e);
+          this.togglePopup(".popup.add-avatar");
+        },
+        click: (e: Event) => {         
+          if (e.target === document.getElementsByClassName("cancel")[0]) {
+            this.togglePopup(".popup.add-avatar");
           }
         }
       },

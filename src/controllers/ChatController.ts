@@ -28,6 +28,10 @@ class ChatController {
   async deleteUser(chatId: number, userId: number) {
     return this.api.deleteUser(chatId, userId);
   }
+
+  async updateAvatar(avatar: FormData) {
+    return this.api.updateAvatar(avatar);
+  }
 }
 
 export default new ChatController();

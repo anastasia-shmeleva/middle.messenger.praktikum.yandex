@@ -33,4 +33,8 @@ export default class ChatAPI {
     const data = { users: [ userId ], chatId }
     return this.http.delete("users", { data, headers: this.headers });
   }
+
+  updateAvatar(data: FormData): Promise<string | unknown> {
+    return this.http.put("avatar", { data });
+  }
 }

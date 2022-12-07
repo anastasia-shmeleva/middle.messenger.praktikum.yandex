@@ -7,16 +7,13 @@
     "start": "npm run build && node server.js",
     "lint": "node_modules/.bin/eslint .",
     "style": "npx stylelint \"**/*.css\"",
-    "test": "ts-mocha -p tsconfig.json src/**/*.spec.ts",
+    "mock": "node ./tests/serverMock/server.js",
+    "test": "ts-mocha src/**/*.spec.ts --require tests/mock.js --exit",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint:all"
-    }
+    "serve": "webpack serve",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -31,23 +28,22 @@
   "homepage": "https://github.com/anastasia-shmeleva/practicum_chat#readme",
   "devDependencies": {
     "@types/chai": "4.3.4",
-    "@types/chai-http": "^4.2.0",
     "@types/expect": "24.3.0",
     "@types/express": "4.17.14",
-    "@types/mocha": "^10.0.1",
+    "@types/mocha": "10.0.1",
     "@types/node": "18.11.0",
-    "@types/sinon": "10.0.13",
+    "@types/uuid": "9.0.0",
     "@typescript-eslint/eslint-plugin": "5.40.1",
     "@typescript-eslint/parser": "5.40.1",
     "autoprefixer": "10.4.13",
     "chai": "4.3.7",
-    "chai-http": "4.3.0",
     "css-loader": "6.7.1",
     "eslint": "8.26.0",
     "eslint-config-airbnb": "19.0.4",
     "html-webpack-plugin": "5.5.0",
-    "husky": "^8.0.2",
+    "husky": "8.0.2",
     "jsdom": "20.0.3",
+    "json-server": "0.17.1",
     "mini-css-extract-plugin": "2.6.1",
     "postcss": "8.4.17",
     "postcss-cli": "10.0.0",
@@ -57,13 +53,11 @@
     "postcss-nested": "6.0.0",
     "postcss-preset-env": "7.8.2",
     "prettier": "2.7.1",
-    "sinon": "15.0.0",
     "style-loader": "3.3.1",
     "stylelint": "14.14.0",
     "stylelint-config-standard": "29.0.0",
     "ts-loader": "9.4.2",
     "ts-mocha": "10.0.0",
-    "ts-node": "10.9.1",
     "typescript": "4.9.3",
     "webpack": "5.75.0",
     "webpack-cli": "5.0.0",
@@ -72,7 +66,7 @@
   "dependencies": {
     "express": "4.18.2",
     "handlebars": "4.7.7",
-    "nanoid": "4.0.0"
+    "uuid": "9.0.0"
   },
   "engines": {
     "node": "16.x",

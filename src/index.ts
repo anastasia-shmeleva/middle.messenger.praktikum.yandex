@@ -22,14 +22,21 @@ async function start() {
       user = await AuthController.getUser();
       return true;
     } catch (e) {
-      Router.getInstance().go("/");
       return false;
     }
   };
 
   await checkAuth().then(() => {
-    if ((window.location.pathname === "/" && user) || (window.location.pathname == "/sign-up" && user)) {
-      Router.getInstance().go("/messenger");
+    if (user) {
+      if (window.location.pathname === "/" || window.location.pathname == "/sign-up") {
+        Router.getInstance().go("/messenger");
+      }
+    } else {
+      if (window.location.pathname === "/sign-up") {
+        Router.getInstance().go("/sign-up");
+      } else {
+        Router.getInstance().go("/")
+      }
     }
   });
 
@@ -37,8 +44,8 @@ async function start() {
     window.location.pathname !== "/" && 
     window.location.pathname !== "/sign-up" && 
     window.location.pathname !== "/settings" && 
-    window.location.pathname !== "/settings/profile" && 
-    window.location.pathname !== "/settings/password" && 
+    window.location.pathname !== "/profile" && 
+    window.location.pathname !== "/password" && 
     window.location.pathname !== "/messenger"
   ) {
     Router.getInstance().go("/404");
@@ -58,11 +65,11 @@ async function start() {
       block: Profile, 
     })
     .use({
-      pathname: "/settings/profile", 
+      pathname: "/profile", 
       block: Settings, 
     })
     .use({
-      pathname: "/settings/password", 
+      pathname: "/password", 
       block: Password, 
     })
     .use({

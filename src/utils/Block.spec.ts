@@ -1,23 +1,31 @@
-import { expect } from "chai";
 import Block from "./Block";
-import sinon from "sinon";
+import { assert, expect } from 'chai';
 
-interface Props {}
+interface Props {
+  prop?: string
+}
 
-const mockEventBus = {
-  on: sinon.fake(),
-  emit: sinon.fake(),
-};
-
-describe("Block", () => {
-  class ComponentMock extends Block<Props> {
-    constructor(props: Props) {
-      super("div", props);
-    }
+class DummyComponent extends Block<Props> {
+  constructor(props: Props) {
+    super("div", props);
   }
 
-  it("should fire init event", () => {
-    new ComponentMock({});
-    expect(mockEventBus.emit.calledWith("init")).to.eq(true);
+  render(): DocumentFragment {
+    return this.compile("mock text", this.props);
+  }
+}
+
+const block = new DummyComponent({ prop: "oldP"});
+
+
+describe("Block", () => {
+  it("Render returns correct text", () => {
+    assert.equal(block.getContent()!.innerHTML, "mock text");
+  });
+
+  it("componentDidUpdate() compares props and returns false if they are not equal", () => {
+    const oldProps = block.props
+    const newProps = { prop: "newP" }
+    expect(block.componentDidUpdate(oldProps, newProps)).to.false;
   });
 });

@@ -90,7 +90,7 @@ class Profile extends Block<Props> {
       name: "Edit details",
       events: {
         click: () => {
-          Router.getInstance().go("/settings/profile");
+          Router.getInstance().go("/profile");
         }
       },
     });
@@ -98,7 +98,7 @@ class Profile extends Block<Props> {
       name: "Change password",
       events: {
         click: () => {
-          Router.getInstance().go("/settings/password");
+          Router.getInstance().go("/password");
         }
       },
     });

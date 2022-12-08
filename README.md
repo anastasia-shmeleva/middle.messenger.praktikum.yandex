@@ -2,7 +2,11 @@
 - https://www.figma.com/file/SuRH2E6anQGMk3R5vPlEcR/Practicum-chat
 
 ### Deploy
+Netlify
 - https://deploy--mellifluous-yeot-e81e18.netlify.app/
+
+Render.com
+- https://yandex-middle-messenger.onrender.com/
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/36568278-6f65-40db-947d-5e88c33b67a6/deploy-status)](https://app.netlify.com/sites/mellifluous-yeot-e81e18/deploys)
 

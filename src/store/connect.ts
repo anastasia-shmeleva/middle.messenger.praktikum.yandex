@@ -8,12 +8,12 @@ export const connect = (mapStateToProps: (state: State) => Record<string, unknow
 
   return class extends Component {
     constructor(props: any) {
-      state = mapStateToProps(store.getState() as State);
+      state = mapStateToProps(store.getState() as unknown as State);
 
       super("div", { ...props, ...state });
 
       store.on(StoreEvents.UPDATED, () => {
-        const newState = mapStateToProps(store.getState() as State);
+        const newState = mapStateToProps(store.getState() as unknown as State);
 
         if (!isEqual(state, newState)) {
           this.setProps({ ...newState });

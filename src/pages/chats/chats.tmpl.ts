@@ -7,4 +7,5 @@ export default `
   {{{ addChatPopup }}}
   {{{ addUserPopup }}}
   {{{ deleteUserPopup }}}
+  {{{ addAvatarPopup }}}
 `;

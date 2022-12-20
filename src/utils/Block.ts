@@ -1,5 +1,5 @@
 import EventBus from "./EventBus";
-import { nanoid } from "nanoid";
+import { v4 } from 'uuid';
 import Handlebars from "handlebars";
 import isEqual from "./isEqual";
 
@@ -16,9 +16,9 @@ export default class Block<
     FLOW_RENDER: "flow:render",
   };
 
-  protected props: P;
+  public props: P;
   public children: Children;
-  public id = nanoid(6);  
+  public id = v4();  
   private _element: HTMLElement | null;
   private _meta: { tag: string; props: P }; 
   private eventBus: () => EventBus;
